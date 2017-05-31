@@ -12,8 +12,6 @@
 			<set name="google-play-services-base" />
 			<set name="google-play-services-plus" />
 			<set name="google-play-services-drive" />
-			<haxelib name="extension-googleplayservices-basement" />
-			<haxelib name="extension-android-support-v4" />
 		</section>
 		
 		<dependency name="gpgex" path="dependencies/gpgex" /> 
