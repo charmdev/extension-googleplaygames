@@ -76,7 +76,8 @@ class GooglePlayGames {
 	public static function init(enableCloudStorage:Bool){
 		#if android
 			if(initted){
-				trace("GooglePlayGames: WONT INIT TWICE!");
+				trace("GooglePlayGames: WONT INIT TWICE! just login");
+				GooglePlayGames.login();
 				return;
 			}
 			initted=true;
