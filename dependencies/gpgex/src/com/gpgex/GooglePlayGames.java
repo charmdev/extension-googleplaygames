@@ -1,6 +1,7 @@
 package com.gpgex;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.Bitmap;
@@ -47,8 +48,11 @@ public class GooglePlayGames extends Extension implements GameHelper.GameHelperL
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////
 	////////////////////////////////////////////////////////////////////////////////////////////////////
-
+	public void onCreate (Bundle savedInstanceState) {
+		Log.i(TAG, "PlayGames: onCreate");
+	}
 	public static void init(boolean cloudStorage, HaxeObject callbackObj){
+		Log.i(TAG, "PlayGames: START INIT");
 		if(callbackObj!=null) GooglePlayGames.callbackObject = new SecureHaxeObject(callbackObj, mainActivity, TAG);
 		if(mHelper!=null){		
 			if(mHelper.isConnecting() || mHelper.isSignedIn()) return;
@@ -80,9 +84,15 @@ public class GooglePlayGames extends Extension implements GameHelper.GameHelperL
 
 	public static void login(){
 		Log.i(TAG, "PlayGames: Forcing Login");
-		userRequiresLogin=true;
-		mHelper=null;
-		init(enableCloudStorage,null);
+		Log.i(TAG, mainActivity.toString());
+		//Log.i(TAG, (mHelper==null) ? "mHelper null" : "mHelper exist!");
+		if (mHelper == null) {
+			userRequiresLogin=true;
+			init(enableCloudStorage,null);
+		} else {
+			mHelper.beginUserInitiatedSignIn();
+		}
+
 	}
 
 	public static void logout(){
@@ -142,7 +152,17 @@ public class GooglePlayGames extends Extension implements GameHelper.GameHelperL
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////
 	////////////////////////////////////////////////////////////////////////////////////////////////////
-
+	@Override public boolean onActivityResult (int requestCode, int resultCode, Intent data)
+	{
+		Log.i(TAG, "PlayGames: onActivityResult");
+		if (mHelper!=null) {
+			Log.i(TAG, "PlayGames: onActivityResult mHelper exist");
+			mHelper.onActivityResult(requestCode, resultCode, data);
+		} else {
+			Log.i(TAG, "PlayGames: onActivityResult mHelper doesn't exist");
+		}
+		return true;
+	}
 	public static GooglePlayGames getInstance(){
 		if(instance==null) instance=new GooglePlayGames();
 		return instance;

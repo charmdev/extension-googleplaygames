@@ -76,8 +76,8 @@ class GooglePlayGames {
 	public static function init(enableCloudStorage:Bool){
 		#if android
 			if(initted){
-				trace("GooglePlayGames: WONT INIT TWICE! just login");
-				GooglePlayGames.login();
+				trace("GooglePlayGames: WONT INIT TWICE!");
+				//GooglePlayGames.login();
 				return;
 			}
 			initted=true;
@@ -113,7 +113,7 @@ class GooglePlayGames {
 			}
 
 			javaInit(enableCloudStorage,getInstance());
-			openfl.Lib.current.stage.addEventListener(flash.events.Event.RESIZE,function(_){javaInit(enableCloudStorage,getInstance());});
+			//openfl.Lib.current.stage.addEventListener(flash.events.Event.RESIZE,function(_){javaInit(enableCloudStorage,getInstance());});
 		#end
 	}
 
@@ -157,7 +157,7 @@ class GooglePlayGames {
 	public static var onLoadPlayerImage : String->String->Void = null;
 	public static var onGetPlayerCurrentSteps : String->Int->Void = null;
 
-	private static var initted:Bool=false;
+	public static var initted:Bool=false;
 	private static var instance:GooglePlayGames=null;
 
 	private static function getInstance():GooglePlayGames{

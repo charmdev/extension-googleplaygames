@@ -139,7 +139,7 @@ public class GameHelper implements GoogleApiClient.ConnectionCallbacks,
     boolean mShowErrorDialogs = true;
 
     // Print debug logs?
-    boolean mDebugLog = false;
+    boolean mDebugLog = true;
 
     Handler mHandler;
 
@@ -706,6 +706,9 @@ public class GameHelper implements GoogleApiClient.ConnectionCallbacks,
             debugLog("onConnectionFailed: WILL resolve because we have below the max# of " +
                 "attempts, " + cancellations + " < " + mMaxAutoSignInAttempts);
             shouldResolve = true;
+        } else if (mConnectionResult.hasResolution()) {
+            debugLog("onConnectionFailed: hasResolution true");
+            shouldResolve = true;
         } else {
             shouldResolve = false;
             debugLog("onConnectionFailed: Will NOT resolve; not user-initiated and max attempts " +
@@ -753,8 +756,12 @@ public class GameHelper implements GoogleApiClient.ConnectionCallbacks,
                 // launch appropriate UI flow (which might, for example, be the
                 // sign-in flow)
                 mExpectingResolution = true;
+                debugLog(mActivity.toString());
+                debugLog(mConnectionResult.getResolution().toString());
+                //mActivity.startIntentSenderForResult(mConnectionResult.getResolution().getIntentSender(), RC_RESOLVE, null, 0, 0, 0);
                 mConnectionResult.startResolutionForResult(mActivity, RC_RESOLVE);
-            } catch (SendIntentException e) {
+                debugLog("Resolution were started.");
+            } catch (Exception e) {
                 // Try connecting again
                 debugLog("SendIntentException, so connecting again.");
                 connect();
