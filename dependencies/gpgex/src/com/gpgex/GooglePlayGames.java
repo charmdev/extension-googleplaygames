@@ -29,6 +29,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.games.Games;
 import com.google.android.gms.games.AchievementsClient;
+import android.app.Activity;
 
 
 public class GooglePlayGames extends Extension {
@@ -39,7 +40,6 @@ public class GooglePlayGames extends Extension {
 	private static GooglePlayGames instance=null;
 	private static boolean userRequiresLogin=false;
 	private static SecureHaxeObject callbackObject = null;
-	
 
   	private GoogleSignInClient mGoogleSignInClient = null;
 	private GoogleSignInAccount mSignedInAccount = null;
@@ -56,7 +56,7 @@ public class GooglePlayGames extends Extension {
 				.requestIdToken(webclientId)
                 .build();
 
-		mGoogleSignInClient = GoogleSignIn.getClient(mainActivity, options);
+		mGoogleSignInClient = GoogleSignIn.getClient(mainContext, options);
 		instance = this;
 	}
 
@@ -67,11 +67,7 @@ public class GooglePlayGames extends Extension {
 
 	public void startSignInIntent() {
 		onSignInStart();
-		mainActivity.runOnUiThread(new Runnable() {
-			public void run() {
-    			mainActivity.startActivityForResult(mGoogleSignInClient.getSignInIntent(), RC_SIGN_IN);
-			}
-		});
+		mainActivity.startActivityForResult(mGoogleSignInClient.getSignInIntent(), RC_SIGN_IN);
   	}
 
 	public void signInSilently() {

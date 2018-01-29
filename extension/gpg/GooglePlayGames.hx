@@ -12,7 +12,7 @@ class GooglePlayGames {
 	///////////// LOGIN & INIT 
 	//////////////////////////////////////////////////////////////////////
 
-	private static var javaInit(default,null) : GooglePlayGames->Void = function(callbackObject:GooglePlayGames):Void{}
+	private static var javaInit(default,null) : Dynamic->GooglePlayGames->Void = function(callbackObject:GooglePlayGames):Void{ trace("stuB!!!");}
 	public static var login(default,null) : Void->Void = function():Void{}
 	public static var loginSilently(default,null) : Void->Void = function():Void{}
 	public static var logout(default,null) : Void->Void = function():Void{}
@@ -68,7 +68,6 @@ class GooglePlayGames {
 			} catch(e:Dynamic) {
 				trace("GooglePlayGames linkMethods Exception: "+e);
 			}
-
 			javaInit(getInstance());
 		#end
 	}
