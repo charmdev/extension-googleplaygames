@@ -28,8 +28,8 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.games.Games;
+import com.google.android.gms.games.GamesClient;
 import com.google.android.gms.games.AchievementsClient;
-import android.app.Activity;
 
 
 public class GooglePlayGames extends Extension {
@@ -98,6 +98,10 @@ public class GooglePlayGames extends Extension {
 		return (mSignedInAccount == null) ? null : Games.getAchievementsClient(mainActivity, mSignedInAccount);
 	}
 
+	public GamesClient getGamesClent() {
+		return (mSignedInAccount == null) ? null : Games.getGamesClient(mainActivity, mSignedInAccount);
+	}
+
 	public static void login(){
 		Log.i(TAG, "PlayGames: Login");
 		GooglePlayGames.getInstance().startSignInIntent();
@@ -159,6 +163,9 @@ public class GooglePlayGames extends Extension {
 		Log.i(TAG, "mSignedInAccount.getIdToken(): " + mSignedInAccount.getIdToken());
 		Log.i(TAG, "mSignedInAccount.getDisplayName(): " + mSignedInAccount.getDisplayName());
 
+		
+		getGamesClent().setViewForPopups(mainView);
+		//getGamesClent().setViewForPopups(mainActivity.getWindow().getDecorView().findViewById(android.R.id.content));
 		onSignInSucceeded();
 	}
 
