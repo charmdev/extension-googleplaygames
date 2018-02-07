@@ -140,6 +140,10 @@ public class GooglePlayGames extends Extension {
         if (exception instanceof ApiException) {
             ApiException apiException = (ApiException) exception;
             int errorCode = apiException.getStatusCode();
+			if (errorCode == 8)//CommonStatusCodes.INTERNAL_ERROR)
+			{
+				return; //ignore
+			}
             errorMessage = GoogleApiAvailability.getInstance().getErrorString(errorCode);
         }
 
