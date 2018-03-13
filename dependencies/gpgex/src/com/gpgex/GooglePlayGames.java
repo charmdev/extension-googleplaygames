@@ -54,6 +54,7 @@ public class GooglePlayGames extends Extension {
 		GoogleSignInOptions options = new GoogleSignInOptions
                 .Builder(GoogleSignInOptions.DEFAULT_GAMES_SIGN_IN)
 				.requestIdToken(webclientId)
+				.requestProfile()
                 .build();
 
 		mGoogleSignInClient = GoogleSignIn.getClient(mainContext, options);
@@ -228,7 +229,7 @@ public class GooglePlayGames extends Extension {
 		if (achievementsClient() == null) {
 			return false;
 		}
-		Log.i(TAG, "PlayGames: achievementsClient().increment");
+		Log.i(TAG, "PlayGames: achievementsClient().increment" + id);
 		achievementsClient().increment(id, step);
 		return true;
 	}
