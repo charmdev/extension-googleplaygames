@@ -35,6 +35,6 @@ dependencies {
 		maven { url 'https://dl.google.com/dl/android/maven2/' }
 	}
 	compile project(':deps:extension-api')
-	compile 'com.google.android.gms:play-services-games:11.8.0'
-	compile 'com.google.android.gms:play-services-auth:11.8.0'
+	compile 'com.google.android.gms:play-services-games:15.0.1'
+	compile 'com.google.android.gms:play-services-auth:15.0.1'
 }
