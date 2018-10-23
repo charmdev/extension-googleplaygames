@@ -32,7 +32,7 @@ android {
 
 dependencies {
 	repositories {
-		maven { url 'https://dl.google.com/dl/android/maven2/' }
+		maven { url 'https://maven.google.com' }
 	}
 	compile project(':deps:extension-api')
 	compile 'com.google.android.gms:play-services-games:15.0.1'
