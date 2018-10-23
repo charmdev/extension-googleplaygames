@@ -2,7 +2,7 @@ buildscript {
 	repositories {
 		jcenter()
 		maven {
-			url "http://repo1.maven.org/maven2/"
+			url 'https://maven.google.com'
 		}
 	}
 	dependencies {
@@ -31,9 +31,6 @@ android {
 }
 
 dependencies {
-	repositories {
-		maven { url 'https://maven.google.com' }
-	}
 	compile project(':deps:extension-api')
 	compile 'com.google.android.gms:play-services-games:15.0.1'
 	compile 'com.google.android.gms:play-services-auth:15.0.1'
