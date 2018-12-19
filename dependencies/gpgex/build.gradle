@@ -30,7 +30,7 @@ android {
 }
 
 dependencies {
-	compile project(':deps:extension-api')
+	api project(':deps:extension-api')
 	implementation 'com.google.android.gms:play-services-games:16.0.0'
 	implementation 'com.google.android.gms:play-services-auth:16.0.1'
 }
