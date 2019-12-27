@@ -1,20 +1,3 @@
-buildscript {
-	repositories {
-		google()
-		jcenter()
-	}
-	dependencies {
-		classpath 'com.android.tools.build:gradle:2.1.0'
-	}
-}
-
-allprojects {
-   repositories {
-	google()
-	jcenter()
-   }
-}
-
 apply plugin: 'com.android.library'
 
 android {
@@ -31,6 +14,6 @@ android {
 
 dependencies {
 	api project(':deps:extension-api')
-	implementation 'com.google.android.gms:play-services-games:16.0.0'
-	implementation 'com.google.android.gms:play-services-auth:16.0.1'
+	implementation "com.google.android.gms:play-services-games:${rootProject.ext.playServicesGamesVersion}"
+	implementation "com.google.android.gms:play-services-auth:${rootProject.ext.playServicesAuthVersion}"
 }
