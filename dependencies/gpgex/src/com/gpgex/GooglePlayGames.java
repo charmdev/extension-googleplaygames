@@ -195,13 +195,19 @@ public class GooglePlayGames extends Extension {
 	}
 
     public void onSignInFailed() {
-		callbackObject.call1("loginResultCallback",-1);
-        Log.i(TAG, "PlayGames: onSignInFailed");
+		if (callbackObject != null)
+		{
+			callbackObject.call1("loginResultCallback",-1);
+			Log.i(TAG, "PlayGames: onSignInFailed");
+		}
     }
 
     public void onSignInSucceeded() {
-		callbackObject.call1("loginResultCallback",1);
-        Log.i(TAG, "PlayGames: onSignInSucceeded");
+		if (callbackObject != null)
+		{
+			callbackObject.call1("loginResultCallback",1);
+			Log.i(TAG, "PlayGames: onSignInSucceeded");
+		}
     }
 	
     public void onSignInStart() {
